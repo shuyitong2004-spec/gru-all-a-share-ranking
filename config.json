@@ -1,0 +1,36 @@
+{
+  "research_date": "2026-10-22",
+  "data_cutoff": "2026-10-16",
+  "lookback_sessions": 40,
+  "rank_model": {
+    "input_channels": 20,
+    "hidden_size": 32,
+    "target": "cross-sectional rank of adjusted_open[t+6] / adjusted_open[t+1] - 1"
+  },
+  "overnight_model": {
+    "input_channels": 32,
+    "hidden_size": 32,
+    "target": "adjusted_open[t+1] / adjusted_close[t] - 1",
+    "variance_floor_percent_squared": 0.01
+  },
+  "rolling_training": {
+    "train_years": 3,
+    "inner_validation_months": 6,
+    "seed": 17
+  },
+  "strategy": {
+    "signal_time": "t+1 official open",
+    "entry_time": "t+1 09:31 approximation",
+    "exit_time": "t+6 official open",
+    "selection_fraction": 0.10,
+    "single_stock_sleeve_cap": 0.01,
+    "opening_discount_clip": 0.05,
+    "calibration_years": 3,
+    "slope_shrinkage_stock_days": 1000,
+    "variance_shrinkage_stock_days": 1000,
+    "standardized_surprise_bins": [0.5, 1.0, 2.0],
+    "base_round_trip_cost": 0.0016
+  }
+}
+
+
